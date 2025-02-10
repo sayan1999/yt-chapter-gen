@@ -1,0 +1,1 @@
+PORT=3333 node src/app.js

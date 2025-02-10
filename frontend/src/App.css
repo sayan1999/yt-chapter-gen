@@ -1,0 +1,177 @@
+/* Modern Color Theme */
+:root {
+  --primary-color: #2563eb;
+  /* Blue */
+  --secondary-color: #1e40af;
+  /* Darker Blue */
+  --background-color: #f8fafc;
+  /* Light Gray */
+  --text-color: #1e293b;
+  /* Dark Gray */
+  --white: #ffffff;
+  --success-color: #10b981;
+  /* Green for valid badge */
+  --error-color: #ef4444;
+  /* Red for invalid badge */
+  --disabled-color: #94a3b8;
+  /* Gray for disabled button */
+}
+
+/* General Styles */
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--primary-color);
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: var(--text-color);
+  margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input-container {
+  position: relative;
+}
+
+.input {
+  padding: 12px;
+  padding-right: 40px;
+  /* Space for the badge */
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  border-color: var(--primary-color);
+}
+
+.validation-badge {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+}
+
+.validation-badge.valid {
+  color: var(--success-color);
+}
+
+.validation-badge.invalid {
+  color: var(--error-color);
+}
+
+.button {
+  padding: 12px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: var(--secondary-color);
+}
+
+.button:disabled {
+  background-color: var(--disabled-color);
+  cursor: not-allowed;
+}
+
+.chapters-container {
+  margin-top: 30px;
+  text-align: left;
+}
+
+.chapters-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.chapters-container p {
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+/* Add these new styles to your existing App.css */
+
+.subtitle-section {
+  margin-top: 15px;
+}
+
+.subtitle-dropdown {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: var(--white);
+  color: var(--text-color);
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.subtitle-dropdown:focus {
+  border-color: var(--primary-color);
+}
+
+.loading {
+  color: var(--text-color);
+  font-size: 0.9rem;
+  padding: 12px;
+  text-align: center;
+  background-color: #f1f5f9;
+  border-radius: 8px;
+}
+
+.no-subtitles {
+  color: var(--error-color);
+  font-size: 0.9rem;
+  padding: 12px;
+  text-align: center;
+  background-color: #fef2f2;
+  border-radius: 8px;
+}

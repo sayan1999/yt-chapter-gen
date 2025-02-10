@@ -1,0 +1,10 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "3333:3333"  # Server port
+      - "5000:5000"  # Frontend port
+    environment:
+      - PORT=3333
+      - REACT_APP_API_BASE_URL=http://localhost:3333/api
