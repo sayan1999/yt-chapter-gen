@@ -25,12 +25,12 @@ WORKDIR /app/frontend
 RUN REACT_APP_API_BASE_URL=http://localhost:3333/api npm run build
 
 # Expose the ports for backend and frontend
-EXPOSE 3333 5000
+EXPOSE 3333 10000
 
 # Create a shell script to run backend and frontend separately
 RUN echo "#!/bin/sh" > /start.sh \
-    && echo "cd /app/backend && PORT=3333 pm2 start src/app.js &" >> /start.sh \
-    && echo "cd /app/frontend && serve -s build -l 5000" >> /start.sh \
+    && echo "cd /app/backend && PORT=3333 node src/app.js" >> /start.sh \
+    && echo "cd /app/frontend && serve -s build -l 10000" >> /start.sh \
     && chmod +x /start.sh
 
 # Command to run the application
