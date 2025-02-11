@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import yaml, json
 import os
 from dotenv import load_dotenv
@@ -7,6 +8,7 @@ from src.utils import get_sub, get_subtitle_languages
 
 load_dotenv()
 app = Flask(__name__)
+CORS(app)
 
 
 def load_prompt_from_yaml(file_path):
