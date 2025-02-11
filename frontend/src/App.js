@@ -26,8 +26,7 @@ function App() {
 
   // Validate YouTube URL and extract video ID
   const validateUrl = (url) => {
-    const pattern =
-      /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+    const pattern = /^https:\/\/www\.youtube\.com\/watch\?v=([\w-]{11})$/;
     const match = url.match(pattern);
     return match ? match[1] : null; // Return null if URL is invalid
   };

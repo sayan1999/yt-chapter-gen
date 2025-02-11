@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookmarklet Example</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const bookmarkletCode = `(() => {
+                const e = window.location.href.match(/https:\\/\\/www\\.youtube\\.com\\/watch\\?v=([^"&?\\/\\s]{11})/i);
+                e && e[1] ? window.location.href = "https://yt-chapters.onrender.com?q=" + encodeURIComponent(e[1]) : alert("No valid YouTube video ID found in the current URL.");
+            })();`;
+
+            const bookmarkletString = `javascript:${encodeURIComponent(bookmarkletCode)}`;
+            document.querySelector("#bookmarklet").href = bookmarkletString;
+        });
+    </script>
+</head>
+
+<body>
+    <h1>Drag This Link into Your Bookmarks Toolbar</h1>
+    <a id="bookmarklet" href="#">YT-Copilot</a>
+</body>
+
+</html>
