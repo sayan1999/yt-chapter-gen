@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import yaml, json
 import os
@@ -256,6 +256,10 @@ def section_summary(video_id, subtitle_id):
         return jsonify({"success": True, "data": response})
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
+
+@app.route("/guide")
+def get_guide():
+    return render_template("guide.html")
 
 
 if __name__ == "__main__":
