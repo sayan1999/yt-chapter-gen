@@ -1,18 +1,15 @@
 # Use Node.js version 23.7.0
-FROM nikolaik/python-nodejs:python3.11-nodejs22-slim
+FROM python:3.12.0a3-slim
 
 # Set working directory in the container
 WORKDIR /app
 # Copy the rest of the application code
 COPY . .
 
-RUN pip install yt-dlp
+RUN pip install -r requirements.txt
 
-# Install backend dependencies
-WORKDIR /app
-RUN npm install
 
-EXPOSE 3333
+EXPOSE 5000
 
 # Command to run the application
-CMD ["node", "src/app.js"]
+CMD ["flask", "--app", "src/app:app", "run", "--port", "5000"]
