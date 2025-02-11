@@ -6,7 +6,6 @@ WORKDIR /app
 # Copy the rest of the application code
 COPY . .
 
-RUN npm install -g pm2
 RUN pip install yt-dlp
 
 # Install backend dependencies
