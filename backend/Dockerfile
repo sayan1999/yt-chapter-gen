@@ -16,4 +16,4 @@ RUN npm install
 EXPOSE 3333
 
 # Command to run the application
-CMD ["pm2", "start", "src/app.js"]
+CMD ["node", "src/app.js"]
