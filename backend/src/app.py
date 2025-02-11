@@ -114,7 +114,7 @@ def home():
 
 
 @app.route("/api/subtitles-languages/<video_id>", methods=["GET"])
-def get_subtitle_languages(video_id):
+def get_subtitle_langs(video_id):
     try:
         languages = get_subtitle_languages(video_id)
         return jsonify({"success": True, "data": languages})
