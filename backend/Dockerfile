@@ -1,5 +1,5 @@
 # Use Node.js version 23.7.0
-FROM nikolaik/python3.13-nodejs23-alpine
+FROM nikolaik/python-nodejs:python3.11-nodejs22-slim
 
 # Set working directory in the container
 WORKDIR /app
