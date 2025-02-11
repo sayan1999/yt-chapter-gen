@@ -1,0 +1,8 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "3333:3333"  # Server port
+    environment:
+      - PORT=3333

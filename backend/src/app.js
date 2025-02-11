@@ -110,6 +110,10 @@ const useGeminiAPI = async (
   }
 };
 
+router.get("/", async (req, res) => {
+  res.json({ success: true, message: "Welcome to the API" });
+});
+
 router.get("/subtitles-languages/:videoId", async (req, res) => {
   try {
     const { videoId, subtitleId } = req.params;
@@ -294,7 +298,7 @@ router.post("/sectionsummary/:videoId/:subtitleId", async (req, res) => {
 
 app.use("/api", router);
 
-const PORT = process.env.PORT || 3333;
+const PORT = process.env.PORT;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 export default app;
