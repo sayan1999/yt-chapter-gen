@@ -12,4 +12,4 @@ RUN pip install -r requirements.txt
 EXPOSE 5000
 
 # Command to run the application
-CMD ["gunicorn", "src/app:app"]
+CMD ["gunicorn", "src.app:app"]

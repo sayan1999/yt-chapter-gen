@@ -3,7 +3,7 @@ import yaml, json
 import os
 from dotenv import load_dotenv
 import requests
-from utils import get_sub, get_subtitle_languages
+from src.utils import get_sub, get_subtitle_languages
 
 load_dotenv()
 app = Flask(__name__)
