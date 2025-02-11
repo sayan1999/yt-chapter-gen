@@ -12,4 +12,4 @@ RUN pip install -r requirements.txt
 EXPOSE 5000
 
 # Command to run the application
-CMD ["flask", "--app", "src/app:app", "run", "--port", "5000"]
+CMD ["gunicorn", "src/app:app"]
