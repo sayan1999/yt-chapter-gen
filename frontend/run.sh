@@ -1,1 +1,1 @@
-npm start
+REACT_APP_API_BASE_URL=http://localhost:3333/api npm start

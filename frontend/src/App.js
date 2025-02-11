@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import Chapters from "./Chapters";
 import { getsubtitles } from "./services/api.js";
-import { useParams } from "react-router-dom";
 
 function App() {
-  const { videoId: initialVideoId } = useParams();
+  const queryParams = new URLSearchParams(window.location.search);
+  const initialVideoId = queryParams.get("q");
   const [url, setUrl] = useState("");
   console.log("Received initialVideoId:", initialVideoId); // Debugging
   const [videoId, setVideoId] = useState(initialVideoId || null); // Initialize with initialVideoId or null
