@@ -3,7 +3,6 @@ services:
   web:
     build: .
     ports:
-      - "3333:3333"
       - "10000:10000"
     environment:
       - PORT=10000

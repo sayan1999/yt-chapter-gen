@@ -257,7 +257,7 @@ def section_summary(video_id, subtitle_id):
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
 
-@app.route("/guide")
+@app.route("/api/guide")
 def get_guide():
     return render_template("guide.html")
 
