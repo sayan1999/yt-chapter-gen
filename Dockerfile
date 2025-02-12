@@ -25,11 +25,11 @@ EXPOSE 3333 10000
 RUN echo "#!/bin/sh" > /start.sh \
     && echo "if [ -z \"\${PORT}\" ]; then echo 'PORT environment variable is not set'; exit 1; fi" >> /start.sh \
     && echo "if [ -z \"\${FLASK_RUN_PORT}\" ]; then echo 'FLASK_RUN_PORT environment variable is not set'; exit 1; fi" >> /start.sh \
-    && echo "cd /app/frontend && serve -s build --listen \${PORT} &" >> /start.sh \
+    && echo "cd /app/frontend && serve -s build --listen 0.0.0.0:\${PORT} &" >> /start.sh \
     && echo "echo 'Waiting for frontend service to be available...'" >> /start.sh \
     && echo "while ! curl -s http://localhost:\${PORT}; do sleep 1; done" >> /start.sh \
     && echo "echo 'UI server is up'" >> /start.sh \
-    && echo "cd /app/backend && gunicorn src.app:app --bind :\${FLASK_RUN_PORT} -t 300 --keep-alive 60" >> /start.sh \
+    && echo "cd /app/backend && sleep 20 && gunicorn src.app:app --bind 127.0.0.1:\${FLASK_RUN_PORT} -t 300 --keep-alive 60" >> /start.sh \
     && chmod +x /start.sh
 
 
