@@ -16,7 +16,7 @@ RUN pip install -r requirements.txt
 # Install frontend dependencies
 WORKDIR /app/frontend
 RUN npm install
-RUN npm run build
+RUN FLASK_RUN_PORT=$FLASK_RUN_PORT npm run build
 
 # Expose the ports for backend and frontend
 EXPOSE 3333 10000
@@ -29,7 +29,7 @@ RUN echo "#!/bin/sh" > /start.sh \
     && echo "echo 'Waiting for frontend service to be available...'" >> /start.sh \
     && echo "while ! curl -s http://localhost:\${PORT}; do sleep 1; done" >> /start.sh \
     && echo "echo 'UI server is up'" >> /start.sh \
-    && echo "cd /app/backend && gunicorn src.app:app --bind 127.0.0.1:\${FLASK_RUN_PORT} -t 300 --keep-alive 60" >> /start.sh \
+    && echo "cd /app/backend && gunicorn src.app:app --bind 0.0.0.0:\${FLASK_RUN_PORT} -t 300 --keep-alive 60" >> /start.sh \
     && chmod +x /start.sh
 
 
