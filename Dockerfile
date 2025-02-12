@@ -16,7 +16,7 @@ RUN pip install -r requirements.txt
 # Install frontend dependencies
 WORKDIR /app/frontend
 RUN npm install
-RUN FLASK_RUN_PORT=$FLASK_RUN_PORT npm run build
+RUN FLASK_RUN_PORT=http://localhost:3333/api npm run build
 
 # Expose the ports for backend and frontend
 EXPOSE 3333 10000
