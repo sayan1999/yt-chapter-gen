@@ -3,8 +3,9 @@ services:
   web:
     build: .
     ports:
-      - "3333:3333"  # Server port
-      - "10000:10000"  # Frontend port
+      - "3333:3333"
+      - "10000:10000"
     environment:
-      - PORT=3333
+      - PORT=10000
+      - FLASK_RUN_PORT=3333
       - REACT_APP_API_BASE_URL=http://localhost:3333/api

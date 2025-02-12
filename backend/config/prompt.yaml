@@ -1,4 +1,4 @@
-temperature: 0.3
+temperature: 0.5
 chapter:
   prompt: |
     # Video Chaptering Specification
@@ -24,6 +24,7 @@ chapter:
 
     ### 2. Chaptering Principles
     - Maximum of 10 chapters per video
+    - DO NOT EXCEED MORE THAN 10 CHAPTERS at any COST
     - Chapter duration: 1 to 20 minutes
     - Ensure comprehensive content representation
     - Capture distinct semantic units
@@ -89,15 +90,20 @@ chapter:
         timestamp: <timestamp_start_seconds_integer>,
         title: "<chapter_title>",
         description: "<chapter_description>",
-      }
+      },
+      .
+      .
+      .
+      [Max 10 such chapters]
     ]
     ```
 
     ### Strict Notes:
     Do not output any introductory or concluding details in the response adhere to the json format above and strictly stick to that.
     Refrain from any trailing or leading  introductory or concluding details in the response.
+    DO not generate more tha 10 chapters
 
-  model: gemini-2.0-flash
+  model: gemini-2.0-pro-exp-02-05
 
 chat:
   prompt: |

@@ -1,5 +1,4 @@
-# Use Node.js version 23.7.0
-FROM node:23.7.0-alpine
+FROM nikolaik/python-nodejs:python3.12-nodejs22-slim
 
 # Set working directory in the container
 WORKDIR /app
@@ -9,28 +8,25 @@ COPY . .
 
 # Install global serve for serving React build
 RUN npm install -g serve
-RUN npm install -g pm2
 
 # Install backend dependencies
 WORKDIR /app/backend
-RUN npm install
+RUN pip install -r requirements.txt
 
 # Install frontend dependencies
 WORKDIR /app/frontend
 RUN npm install
-
-# Build React app
-WORKDIR /app/frontend
-
-RUN REACT_APP_API_BASE_URL=http://localhost:3333/api npm run build
+RUN npm run build
 
 # Expose the ports for backend and frontend
 EXPOSE 3333 10000
 
 # Create a shell script to run backend and frontend separately
 RUN echo "#!/bin/sh" > /start.sh \
-    && echo "cd /app/backend && PORT=3333 node src/app.js" >> /start.sh \
-    && echo "cd /app/frontend && serve -s build -l 10000" >> /start.sh \
+    && echo "if [ -z \"\${PORT}\" ]; then echo 'PORT environment variable is not set'; exit 1; fi" >> /start.sh \
+    && echo "if [ -z \"\${FLASK_RUN_PORT}\" ]; then echo 'FLASK_RUN_PORT environment variable is not set'; exit 1; fi" >> /start.sh \
+    && echo "cd /app/backend && gunicorn src.app:app --bind 0.0.0.0:\${FLASK_RUN_PORT} -t 300 --keep-alive 60 &" >> /start.sh \
+    && echo "cd /app/frontend && serve -s build --listen \${PORT}" >> /start.sh \
     && chmod +x /start.sh
 
 # Command to run the application
