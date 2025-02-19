@@ -9,7 +9,12 @@ COPY . .
 RUN pip install -r requirements.txt
 
 
-EXPOSE 5000
+EXPOSE 3333
+
+RUN echo "#!/bin/sh" > /start.sh \
+    && echo "if [ -z \"\${FLASK_RUN_PORT}\" ]; then echo 'FLASK_RUN_PORT environment variable is not set'; exit 1; fi" >> /start.sh \
+    && echo "cd /app && gunicorn src.app:app --bind 0.0.0.0:\${FLASK_RUN_PORT} -t 300 --keep-alive 60" >> /start.sh \
+    && chmod +x /start.sh
 
 # Command to run the application
-CMD ["gunicorn", "src.app:app"]
+CMD ["/start.sh"]

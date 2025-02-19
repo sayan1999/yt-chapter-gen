@@ -14,10 +14,16 @@ RUN npm install -g serve
 # Install frontend dependencies
 WORKDIR /app/frontend
 RUN npm install
+
 RUN npm run build
 
-# Expose the ports for backend and frontend
-EXPOSE 3000
+
+# Create a shell script to run backend and frontend separately
+RUN echo "#!/bin/sh" > /start.sh \
+    && echo "if [ -z \"\${UI_PORT}\" ]; then echo 'PORT environment variable is not set'; exit 1; fi" >> /start.sh \
+    && echo "cd /app && serve -s build --listen tcp://0.0.0.0:\${UI_PORT}" >> /start.sh \
+    && chmod +x /start.sh
+
 
 # Command to run the application
-CMD ["./serve.sh"]
+CMD ["/start.sh"] 

@@ -16,7 +16,7 @@ RUN pip install -r requirements.txt
 # Install frontend dependencies
 WORKDIR /app/frontend
 RUN npm install
-RUN REACT_APP_API_BASE_URL=http://localhost:3333/api npm run build
+RUN REACT_APP_API_BASE_URL=${REACT_APP_API_BASE_URL} npm run build
 
 # Expose the ports for backend and frontend
 EXPOSE 3333 10000

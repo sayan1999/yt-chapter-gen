@@ -1,8 +1,7 @@
-version: '3'
 services:
   web:
     build: .
     ports:
-      - "5000:5000"  # Server port
-    environment:
-      - PORT=5000
+      - "${FLASK_RUN_PORT}:${FLASK_RUN_PORT}"  # Server port
+    env_file:
+      - .env
