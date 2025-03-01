@@ -16,7 +16,7 @@ RUN pip install -r requirements.txt
 # Install frontend dependencies
 WORKDIR /app/frontend
 RUN npm install
-RUN REACT_APP_API_BASE_URL=${REACT_APP_API_BASE_URL} npm run build
+RUN npm run build
 
 # Expose the ports for backend and frontend
 EXPOSE 3333 10000
@@ -25,7 +25,7 @@ EXPOSE 3333 10000
 RUN echo "#!/bin/sh" > /start.sh \
     && echo "if [ -z \"\${PORT}\" ]; then echo 'PORT environment variable is not set'; exit 1; fi" >> /start.sh \
     && echo "if [ -z \"\${FLASK_RUN_PORT}\" ]; then echo 'FLASK_RUN_PORT environment variable is not set'; exit 1; fi" >> /start.sh \
-    && echo "cd /app/frontend && serve -s build --listen tcp://0.0.0.0:\${PORT} &" >> /start.sh \
+    && echo "cd /app/frontend && serve -s build --listen :\${PORT} &" >> /start.sh \
     && echo "echo 'Waiting for frontend service to be available...'" >> /start.sh \
     && echo "while ! curl -s http://localhost:\${PORT}; do sleep 1; done" >> /start.sh \
     && echo "echo 'UI server is up'" >> /start.sh \
